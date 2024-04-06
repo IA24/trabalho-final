@@ -1,9 +1,9 @@
-from data import pais
+from data import pais, conexoes
 import heapq
 
 
 class SearchAlgorithms:
-    def __init__(self, conexoes, origem, destino):
+    def __init__(self, origem, destino):
         if not (conexoes and origem and destino):
             raise ValueError("Conexões, origem e destino devem ser fornecidos.")
         self.conexoes = conexoes

@@ -1,6 +1,7 @@
 from localizacao.localizacao import Localizacao
 from localizacao.pais import Pais
 from localizacao.conexoes import Conexoes
+from utils import Utils
 
 
 def cria_conexoes(pais):
@@ -29,6 +30,7 @@ def criar_localizacoes():
 
 
 def init():
+    Utils.limpar_consola()
     localizacoes = criar_localizacoes()
     pais = Pais("Portugal", localizacoes)
     conexoes = cria_conexoes(pais)

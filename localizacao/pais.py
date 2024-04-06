@@ -16,6 +16,12 @@ class Pais:
         print(nome, "não existe.")
         return None
 
+    def localizacao_existe(self, nome):
+        if self.obter_localizacao_by_nome(nome):
+            return True
+        else:
+            return False
+
     def display(self):
         i = 1
         print(self.nome)

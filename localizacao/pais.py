@@ -9,14 +9,18 @@ class Pais:
     def obter_localizacoes(self):
         return self.localizacoes
 
-    def obter_localizacao_nome(self, nome):
+    def obter_localizacao_by_nome(self, nome):
         for localizacao in self.localizacoes:
             if localizacao.nome == nome:
                 return localizacao
+        print(nome, "não existe.")
         return None
 
     def display(self):
+        i = 1
         print(self.nome)
         for local in self.localizacoes:
+            print("\n" + str(i) + ".")
             local.display()
+            i += 1
 

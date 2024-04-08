@@ -24,10 +24,7 @@ class Pais:
         else:
             return False
 
-    def calcular_distancia(self, localizacao1, localizacao2):
-        local1 = self.obter_localizacao_by_nome(localizacao1)
-        local2 = self.obter_localizacao_by_nome(localizacao2)
-
+    def calcular_distancia(self, local1, local2):
         distancia = math.sqrt((local1.longitude - local2.longitude) ** 2 + (local2.latitude - local1.latitude) ** 2)
 
         return int(distancia * 100)

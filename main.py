@@ -1,12 +1,8 @@
-from algoritmos.Algoritmos import Algoritmos
-from data import conexoes, pais
-from interface import interface
+from interface import Interface
 
 
 def main():
-    #print(pais.calcular_distancia("Aveiro", "Faro"))
-
-    interface()
+    Interface.interface()
 
 
 main()

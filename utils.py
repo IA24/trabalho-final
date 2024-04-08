@@ -1,4 +1,3 @@
-
 class Utils:
     @staticmethod
     def limpar_consola():

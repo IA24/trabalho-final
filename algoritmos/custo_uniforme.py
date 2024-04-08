@@ -1,16 +1,8 @@
-from data import pais, conexoes
+from algoritmos.Algoritmos import Algoritmos
 import heapq
 
-
-class SearchAlgorithms:
-    def __init__(self, origem, destino):
-        if not (conexoes and origem and destino):
-            raise ValueError("Conexões, origem e destino devem ser fornecidos.")
-        self.conexoes = conexoes
-        self.origem = pais.obter_localizacao_by_nome(origem)
-        self.destino = pais.obter_localizacao_by_nome(destino)
-
-    def custo_uniforme(self):
+class CustoUniforme(Algoritmos):
+    def algoritmo(self):
         fila_prioridade = [(0, self.origem, [])]
         visitados = set()
         while fila_prioridade:

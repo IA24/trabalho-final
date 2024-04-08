@@ -1,6 +1,7 @@
 from algoritmos.Algoritmos import Algoritmos
 import heapq
 
+
 class CustoUniforme(Algoritmos):
     def algoritmo(self):
         fila_prioridade = [(0, self.origem, [])]

@@ -17,14 +17,7 @@ def interface():
                 break
             elif int(opcao) in [0, 1, 2, 3, 4]:
                 Utils.limpar_consola()
-                while True:
-                    origem = input("Origem: ")
-                    if isinstance(origem, str) and pais.localizacao_existe(origem):
-                        break
-                while True:
-                    destino = input("Destino: ")
-                    if isinstance(destino, str) and pais.localizacao_existe(destino):
-                        break
+                origem, destino = interface_inputs()
                 if int(opcao) == 1:
                     interface_custo_uniforme(origem, destino)
                 elif int(opcao) == 2:
@@ -46,3 +39,15 @@ def interface_custo_uniforme(origem, destino):
     search.display(resultado)
     Utils.enter_to_continue()
     Utils.limpar_consola()
+
+
+def interface_inputs():
+    while True:
+        origem = input("Origem: ")
+        if isinstance(origem, str) and pais.localizacao_existe(origem):
+            break
+    while True:
+        destino = input("Destino: ")
+        if isinstance(destino, str) and pais.localizacao_existe(destino):
+            break
+    return origem, destino

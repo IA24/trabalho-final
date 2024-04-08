@@ -1,23 +1,41 @@
-'''def busca_sofrega(origem, destino, distancias, distancias_faro):
-    caminho = [origem]
-    while caminho[-1] != destino:
-        cidade_atual = caminho[-1]
-        proxima_cidade = None
-        menor_distancia = float('inf')
-        for adjacente in distancias[cidade_atual]:
-            if adjacente not in caminho:
-                distancia = distancias_faro[adjacente]
-                if distancia < menor_distancia:
-                    menor_distancia = distancia
-                    proxima_cidade = adjacente
-        if proxima_cidade is None:
-            print("Não foi possível encontrar um caminho até o destino.")
-            return None
-        caminho.append(proxima_cidade)
-    return caminho
+from algoritmos.Algoritmos import Algoritmos
+import heapq
 
-# Exemplo de utilização
-caminho = busca_sofrega('Aveiro', 'Faro', distancias, distancias_faro)
-if caminho:
-    print("Caminho encontrado:", caminho)
-'''
+class BuscaGulosa(Algoritmos):
+    def algoritmo(self):
+        fila_prioridade = [(0, self.origem, [])]
+        visitados = set()
+        while fila_prioridade:
+            custo_atual, localizacao_atual, caminho_atual = heapq.heappop(fila_prioridade)
+            if localizacao_atual in visitados:
+                continue
+            visitados.add(localizacao_atual)
+            if localizacao_atual == self.destino:
+                return custo_atual, caminho_atual + [localizacao_atual], self.origem, self.destino
+            for conexao in self.conexoes:
+                if conexao.localizacao1 == localizacao_atual:
+                    nova_localizacao = conexao.localizacao2
+                elif conexao.localizacao2 == localizacao_atual:
+                    nova_localizacao = conexao.localizacao1
+                else:
+                    continue
+                if nova_localizacao not in visitados:
+                    novo_custo = custo_atual + conexao.heuristica
+                    novo_caminho = caminho_atual + [localizacao_atual]
+                    heapq.heappush(fila_prioridade, (novo_custo, nova_localizacao, novo_caminho))
+        return float('inf'), [], self.origem, self.destino
+
+    def display(self, resultado):
+        custo, caminho, origem, destino = resultado
+        if custo == float('inf'):
+            print("Não foi encontrado um caminho entre", origem, "e", destino)
+            return
+        print("Origem:", origem.obter_nome())
+        print("Destino:", destino.obter_nome())
+        print("Custo:", custo)
+        caminho_str = ""
+        for i, cam in enumerate(caminho):
+            caminho_str += cam.obter_nome()
+            if i < len(caminho) - 1:
+                caminho_str += ", "
+        print("Caminho percorrido:", caminho_str)

@@ -1,5 +1,6 @@
 import math
 
+
 class Pais:
     def __init__(self, nome, localizacoes):
         self.nome = nome
@@ -13,7 +14,7 @@ class Pais:
 
     def obter_localizacao_by_nome(self, nome):
         for localizacao in self.localizacoes:
-            if localizacao.nome == nome:
+            if localizacao.nome.lower() == nome.lower():
                 return localizacao
         print(nome, "não existe.")
         return None
@@ -36,4 +37,3 @@ class Pais:
             print("\n" + str(i) + ".")
             local.display()
             i += 1
-

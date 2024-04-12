@@ -1,6 +1,5 @@
 import heapq
 
-
 class Graph:
     def __init__(self):
         self.edges = {}
@@ -20,7 +19,6 @@ class Graph:
         return self.edges[city]
 
     def heuristic(self, city, goal):
-        # Heurística simples: estimar a distância entre as cidades com base na tabela fornecida
         heuristic_table = {
             "Aveiro": 366, "Braga": 454, "Bragança": 487,
             "Beja": 99, "Castelo Branco": 280, "Coimbra": 319,
@@ -31,11 +29,10 @@ class Graph:
         }
         return heuristic_table[city]
 
-
 def a_star_search(graph, start, goal):
-    open_list = [(0, start)]  # Fila de prioridade para os nós a serem explorados
-    came_from = {}  # Dicionário para armazenar os nós predecessores
-    g_score = {start: 0}  # Dicionário para armazenar o custo do caminho do início até o nó atual
+    open_list = [(0, start)]  # Priority queue for nodes to be explored
+    came_from = {}  # Dictionary to store predecessor nodes
+    g_score = {start: 0}  # Dictionary to store cost of path from start to current node
 
     while open_list:
         current_cost, current_node = heapq.heappop(open_list)
@@ -46,7 +43,8 @@ def a_star_search(graph, start, goal):
                 current_node = came_from[current_node]
                 path.append(current_node)
             path.reverse()
-            return path
+            total_cost = sum(graph.get_distance(path[i], path[i+1]) for i in range(len(path) - 1))
+            return path, total_cost
 
         for neighbor in graph.edges[current_node]:
             tentative_g_score = g_score[current_node] + graph.edges[current_node][neighbor]
@@ -56,13 +54,12 @@ def a_star_search(graph, start, goal):
                 f_score = tentative_g_score + graph.heuristic(neighbor, goal)
                 heapq.heappush(open_list, (f_score, neighbor))
 
-    return None
+    return None, None
 
-
-# Criando um grafo de exemplo
+# Creating an example graph
 graph = Graph()
 
-# Adicionando as conexões entre as cidades e suas distâncias
+# Adding connections between cities and their distances
 graph.add_edge("Aveiro", "Porto", 68)
 graph.add_edge("Aveiro", "Viseu", 95)
 graph.add_edge("Aveiro", "Coimbra", 68)
@@ -98,17 +95,18 @@ graph.add_edge("Porto", "Vila Real", 116)
 graph.add_edge("Porto", "Viseu", 133)
 graph.add_edge("Vila Real", "Viseu", 110)
 
-# Adicione mais conexões conforme necessário
+# Add more connections as needed
 
-# Executando a busca A*
+# Running A* search
 start = "Santarém"
 goal = "Faro"
-path = a_star_search(graph, start, goal)
+path, total_cost = a_star_search(graph, start, goal)
 
-# Exibindo o caminho encontrado
+# Displaying the found path and total cost
 if path:
     print("Caminho encontrado:")
     for city in path:
         print(city)
+    print("Custo total da distância:", total_cost)
 else:
     print("Caminho não encontrado.")

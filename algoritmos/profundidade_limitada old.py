@@ -1,3 +1,9 @@
+from data import PAISES
+from data import CONEXOES
+from data import LOCALIZACOES
+from init import init
+
+"""
 distancias = {
     "Aveiro": {"Porto": 68, "Viseu": 95, "Coimbra": 68, "Leiria": 115},
     "Porto": {"Aveiro": 68, "Braga": 53, "Vila Real": 116},
@@ -59,3 +65,44 @@ def encontrar_caminho():
 
 # Chamada da função principal
 encontrar_caminho()
+"""
+
+def profundidade_limitada(origem, destino, max_profundidade):
+    stack = [(origem, [origem])]  # Pilha de nós a serem explorados, cada item é uma tupla (nó, caminho até o nó)
+
+    while stack:
+        (node, path) = stack.pop()  # Pegar o próximo nó e seu caminho
+
+        if node == destino:
+            return path  # Se chegamos ao destino, retornamos o caminho
+
+        if len(path) < max_profundidade:  # Limita a busca à profundidade máxima
+            for con in CONEXOES:
+                if con.localizacao1 == node:
+                    stack.append((con.localizacao2, path + [con.localizacao2]))
+
+    return None
+
+if __name__ == "__main__":
+    CONEXOES, LOCALIZACOES, PAIS = init()
+
+    origem = input("Insira a cidade de origem: ")
+    destino = input("Insira a cidade de destino: ")
+    max_profundidade = int(input("Insira o nível máximo de profundidade: "))
+
+    origem_localizacao = PAIS.obter_localizacao_by_nome(origem)
+    destino_localizacao = PAIS.obter_localizacao_by_nome(destino)
+
+    if not origem_localizacao or not destino_localizacao:
+        print("Localizações inválidas.")
+    else:
+        resultado = profundidade_limitada(origem_localizacao, destino_localizacao, max_profundidade)
+
+        if resultado:
+            print("Caminho encontrado:")
+            for loc in resultado:
+                print(loc.obter_nome())
+            distancia_total = len(resultado) - 1  # A distância é o número de conexões no caminho
+            print(f"Distância total do caminho: {distancia_total} conexões.")
+        else:
+            print("Caminho não encontrado até a profundidade especificada.")

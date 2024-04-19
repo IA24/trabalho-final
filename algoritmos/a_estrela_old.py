@@ -27,6 +27,44 @@ class Graph:
         return distanciaheuristica
 
 
+    """graph = Graph()
+
+    # Adding connections between cities and their distances
+    graph.add_edge("Aveiro", "Porto", 68)
+    graph.add_edge("Aveiro", "Viseu", 95)
+    graph.add_edge("Aveiro", "Coimbra", 68)
+    graph.add_edge("Aveiro", "Leiria", 115)
+    graph.add_edge("Braga", "Viana do Castelo", 48)
+    graph.add_edge("Braga", "Vila Real", 106)
+    graph.add_edge("Braga", "Porto", 53)
+    graph.add_edge("Bragança", "Vila Real", 137)
+    graph.add_edge("Bragança", "Guarda", 202)
+    graph.add_edge("Beja", "Évora", 78)
+    graph.add_edge("Beja", "Faro", 152)
+    graph.add_edge("Beja", "Setúbal", 142)
+    graph.add_edge("Castelo Branco", "Coimbra", 159)
+    graph.add_edge("Castelo Branco", "Guarda", 106)
+    graph.add_edge("Castelo Branco", "Portalegre", 80)
+    graph.add_edge("Castelo Branco", "Évora", 203)
+    graph.add_edge("Coimbra", "Viseu", 96)
+    graph.add_edge("Coimbra", "Leiria", 67)
+    graph.add_edge("Évora", "Lisboa", 150)
+    graph.add_edge("Évora", "Santarém", 117)
+    graph.add_edge("Évora", "Portalegre", 131)
+    graph.add_edge("Évora", "Setúbal", 103)
+    graph.add_edge("Faro", "Setúbal", 249)
+    graph.add_edge("Faro", "Lisboa", 299)
+    graph.add_edge("Guarda", "Vila Real", 157)
+    graph.add_edge("Guarda", "Viseu", 85)
+    graph.add_edge("Leiria", "Lisboa", 129)
+    graph.add_edge("Leiria", "Santarém", 70)
+    graph.add_edge("Lisboa", "Santarém", 78)
+    graph.add_edge("Lisboa", "Setúbal", 50)
+    graph.add_edge("Porto", "Viana do Castelo", 71)
+    graph.add_edge("Porto", "Vila Real", 116)
+    graph.add_edge("Porto", "Viseu", 133)
+    graph.add_edge("Vila Real", "Viseu", 110)"""
+
 def a_star_search(graph, start, goal):
     open_list = [(0, start)]  # Priority queue for nodes to be explored
     came_from = {}  # Dictionary to store predecessor nodes
@@ -54,57 +92,5 @@ def a_star_search(graph, start, goal):
 
     return None, None
 
-# Creating an example graph
-graph = Graph()
 
-# Adding connections between cities and their distances
-graph.add_edge("Aveiro", "Porto", 68)
-graph.add_edge("Aveiro", "Viseu", 95)
-graph.add_edge("Aveiro", "Coimbra", 68)
-graph.add_edge("Aveiro", "Leiria", 115)
-graph.add_edge("Braga", "Viana do Castelo", 48)
-graph.add_edge("Braga", "Vila Real", 106)
-graph.add_edge("Braga", "Porto", 53)
-graph.add_edge("Bragança", "Vila Real", 137)
-graph.add_edge("Bragança", "Guarda", 202)
-graph.add_edge("Beja", "Évora", 78)
-graph.add_edge("Beja", "Faro", 152)
-graph.add_edge("Beja", "Setúbal", 142)
-graph.add_edge("Castelo Branco", "Coimbra", 159)
-graph.add_edge("Castelo Branco", "Guarda", 106)
-graph.add_edge("Castelo Branco", "Portalegre", 80)
-graph.add_edge("Castelo Branco", "Évora", 203)
-graph.add_edge("Coimbra", "Viseu", 96)
-graph.add_edge("Coimbra", "Leiria", 67)
-graph.add_edge("Évora", "Lisboa", 150)
-graph.add_edge("Évora", "Santarém", 117)
-graph.add_edge("Évora", "Portalegre", 131)
-graph.add_edge("Évora", "Setúbal", 103)
-graph.add_edge("Faro", "Setúbal", 249)
-graph.add_edge("Faro", "Lisboa", 299)
-graph.add_edge("Guarda", "Vila Real", 157)
-graph.add_edge("Guarda", "Viseu", 85)
-graph.add_edge("Leiria", "Lisboa", 129)
-graph.add_edge("Leiria", "Santarém", 70)
-graph.add_edge("Lisboa", "Santarém", 78)
-graph.add_edge("Lisboa", "Setúbal", 50)
-graph.add_edge("Porto", "Viana do Castelo", 71)
-graph.add_edge("Porto", "Vila Real", 116)
-graph.add_edge("Porto", "Viseu", 133)
-graph.add_edge("Vila Real", "Viseu", 110)
 
-# Add more connections as needed
-
-# Running A* search
-start = "Coimbra"
-goal = "Faro"
-path, total_cost = a_star_search(graph, start, goal)
-
-# Displaying the found path and total cost
-if path:
-    print("Caminho encontrado:")
-    for city in path:
-        print(city)
-    print("Custo total da distância:", total_cost)
-else:
-    print("Caminho não encontrado.")

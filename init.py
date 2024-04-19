@@ -34,4 +34,5 @@ def init():
     localizacoes = criar_localizacoes()
     pais = Pais("Portugal", localizacoes)
     conexoes = cria_conexoes(pais)
+    pais.set_conexoes(conexoes)
     return conexoes, localizacoes, pais

@@ -3,7 +3,7 @@ from data import CONEXOES
 from data import LOCALIZACOES
 from init import init
 
-"""
+
 distancias = {
     "Aveiro": {"Porto": 68, "Viseu": 95, "Coimbra": 68, "Leiria": 115},
     "Porto": {"Aveiro": 68, "Braga": 53, "Vila Real": 116},
@@ -65,7 +65,7 @@ def encontrar_caminho():
 
 # Chamada da função principal
 encontrar_caminho()
-"""
+
 
 def profundidade_limitada(origem, destino, max_profundidade):
     stack = [(origem, [origem])]  # Pilha de nós a serem explorados, cada item é uma tupla (nó, caminho até o nó)

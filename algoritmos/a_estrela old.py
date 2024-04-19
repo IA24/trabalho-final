@@ -1,4 +1,5 @@
 import heapq
+from data import PAISES
 
 class Graph:
     def __init__(self):
@@ -19,15 +20,12 @@ class Graph:
         return self.edges[city]
 
     def heuristic(self, city, goal):
-        heuristic_table = {
-            "Aveiro": 366, "Braga": 454, "Bragança": 487,
-            "Beja": 99, "Castelo Branco": 280, "Coimbra": 319,
-            "Évora": 157, "Faro": 0, "Guarda": 352,
-            "Leiria": 278, "Lisboa": 195, "Portalegre": 228,
-            "Porto": 418, "Santarém": 231, "Setúbal": 168,
-            "Viana do Castelo": 473, "Vila Real": 429, "Viseu": 363, "Mangualde": 20
-        }
-        return heuristic_table[city]
+        localizacao1 = PAISES.obter_localizacao_by_nome(city)
+        localizacao2 = PAISES.obter_localizacao_by_nome(goal)
+
+        distanciaheuristica = PAISES.calcular_distancia(localizacao1,localizacao2)
+        return distanciaheuristica
+
 
 def a_star_search(graph, start, goal):
     open_list = [(0, start)]  # Priority queue for nodes to be explored
@@ -98,7 +96,7 @@ graph.add_edge("Vila Real", "Viseu", 110)
 # Add more connections as needed
 
 # Running A* search
-start = "Santarém"
+start = "Coimbra"
 goal = "Faro"
 path, total_cost = a_star_search(graph, start, goal)
 

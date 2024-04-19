@@ -1,4 +1,3 @@
-
 distancias = {
     "Aveiro": {"Porto": 68, "Viseu": 95, "Coimbra": 68, "Leiria": 115},
     "Porto": {"Aveiro": 68, "Braga": 53, "Vila Real": 116},
@@ -35,7 +34,7 @@ def algoritmo(origem, destino, nivel_maximo, caminho_atual=[]):
 
     # Explora cada cidade vizinha
     for vizinha in distancias[origem]:
-        if vizinha not in caminho_atual:
+        if vizinha not in caminho_atual:  # Evita ciclos
             novo_caminho = algoritmo(vizinha, destino, nivel_maximo, caminho_atual)
             if novo_caminho is not None:
                 return novo_caminho
@@ -43,14 +42,19 @@ def algoritmo(origem, destino, nivel_maximo, caminho_atual=[]):
     return None
 
 def calcular_distancia(caminho):
+    if caminho is None or len(caminho) < 2:
+        return 0
+
     distancia_total = 0
     for i in range(len(caminho) - 1):
         cidade_atual = caminho[i]
         proxima_cidade = caminho[i + 1]
         distancia_total += distancias[cidade_atual][proxima_cidade]
+
     return distancia_total
 
 
+# Função principal para interagir com o usuário e chamar a busca
 def display():
     origem = input("Digite a cidade de origem: ")
     destino = input("Digite a cidade de destino: ")
@@ -63,11 +67,8 @@ def display():
     else:
         distancia = calcular_distancia(caminho)
         print("Caminho encontrado:", caminho)
-        print("Distância percorrida:", distancia)
+        print("Distância percorrida:", distancia)  # Distância é o número de cidades no caminho - 1
 
+# Chamada da função principal
 display()
-
-
-
-
 

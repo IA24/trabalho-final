@@ -16,6 +16,9 @@ class Localizacao:
         # Para fins de exemplo, vamos comparar as localizações com base no nome
         return self.nome < other.nome
 
+    def __str__(self):
+        return self.nome
+
     def obter_nome(self):
         return self.nome
 

@@ -1,7 +1,7 @@
 import heapq
 from algoritmos.algoritmos import Algoritmos
 from data import PAISES
-from algoritmos.resultado import Result
+from algoritmos.resultado import Resultado
 
 
 class AEstrela(Algoritmos):
@@ -22,8 +22,8 @@ class AEstrela(Algoritmos):
                     path.append(current_node)
                 path.reverse()
                 total_cost = sum(self.conexoes.get_distance(path[i], path[i + 1]) for i in range(len(path) - 1))
-                result = Result(path, total_cost, self.origem, self.destino)
-                return result
+                resultado = Resultado(path, total_cost, self.origem, self.destino)
+                return resultado
 
             for neighbor in self.conexoes.conexao[current_node]:
                 tentative_g_score = g_score[current_node] + self.conexoes.conexao[current_node][neighbor]

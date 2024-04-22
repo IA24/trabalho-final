@@ -1,4 +1,5 @@
 from algoritmos.algoritmos import Algoritmos
+from algoritmos.resultado import Resultado
 import heapq
 
 from data import PAISES
@@ -6,24 +7,28 @@ from data import PAISES
 
 class CustoUniforme(Algoritmos):
     def algoritmo(self):
-        fila_prioridade = [(0, self.origem, [])]
-        visitados = set()
-        while fila_prioridade:
-            custo_atual, localizacao_atual, caminho_atual = heapq.heappop(fila_prioridade)
-            if localizacao_atual in visitados:
-                continue
-            visitados.add(localizacao_atual)
-            if localizacao_atual == self.destino:
-                return custo_atual, caminho_atual + [localizacao_atual], self.origem, self.destino
-            for conexao in self.conexoes:
-                if conexao.localizacao1 == localizacao_atual:
-                    nova_localizacao = conexao.localizacao2
-                elif conexao.localizacao2 == localizacao_atual:
-                    nova_localizacao = conexao.localizacao1
-                else:
-                    continue
-                if nova_localizacao not in visitados:
-                    novo_custo = custo_atual + conexao.distancia
-                    novo_caminho = caminho_atual + [localizacao_atual]
-                    heapq.heappush(fila_prioridade, (novo_custo, nova_localizacao, novo_caminho))
-        return float('inf'), [], self.origem, self.destino
+        custos = {self.origem: 0}
+        predecessores = {self.origem: None}  # Dicionário para armazenar os predecessores
+        explorados = set()
+        fronteira = [(0, self.origem)]
+
+        while fronteira:
+            custo_atual, no_atual = heapq.heappop(fronteira)
+            if no_atual in explorados: continue
+            if no_atual == self.destino:
+                # Construir e retornar o caminho percorrido
+                caminho = []
+                while no_atual is not None:
+                    caminho.insert(0, no_atual)
+                    no_atual = predecessores[no_atual]
+                    resultado = Resultado(caminho, custo_atual, self.origem, self.destino)
+                return resultado
+            explorados.add(no_atual)
+            for neighbor in self.conexoes.conexao[no_atual]:
+                distancia = self.conexoes.conexao[no_atual][neighbor]
+                custo_acumulado = custo_atual + distancia
+                if neighbor not in explorados and (neighbor not in custos or custo_acumulado < custos[neighbor]):
+                    custos[neighbor] = custo_acumulado
+                    predecessores[neighbor] = no_atual  # Atualiza o predecessor
+                    heapq.heappush(fronteira, (custo_acumulado, neighbor))
+        return None

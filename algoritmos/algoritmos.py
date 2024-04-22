@@ -10,8 +10,6 @@ class Algoritmos(ABC):
         self.conexoes = CONEXOES
         self.origem = PAISES.obter_localizacao_by_nome(origem)
         self.destino = PAISES.obter_localizacao_by_nome(destino)
-        print(self.origem, origem)
-        print(self.destino, destino)
 
     @abstractmethod
     def algoritmo(self):

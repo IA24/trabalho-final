@@ -1,6 +1,6 @@
 from localizacao.localizacao import Localizacao
 from localizacao.pais import Pais
-from localizacao.conexoes_old import Conexoes
+from localizacao.conexoes import Conexoes
 from utils import Utils
 
 

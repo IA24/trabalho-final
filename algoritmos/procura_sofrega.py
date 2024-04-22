@@ -1,4 +1,4 @@
-from algoritmos.Algoritmos import Algoritmos
+from algoritmos.algoritmos import Algoritmos
 import heapq
 
 

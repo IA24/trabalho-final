@@ -1,19 +1,18 @@
 from localizacao.localizacao import Localizacao
 from localizacao.pais import Pais
-from localizacao.conexoes import Conexoes
+from localizacao.conexoes_old import Conexoes
 from utils import Utils
 
 
 def cria_conexoes(pais):
-    conexoes = []
     with open("files/conexoes.txt", 'r', encoding='utf-8') as file:
+        conexoes = Conexoes()
         for line in file:
             string = line.strip().split('; ')
             localizacao1, localizacao2, distancia = str(string[0]), str(string[1]), int(string[2])
             if localizacao1 and localizacao2 and distancia:
-                con = Conexoes(pais.obter_localizacao_by_nome(localizacao1),
-                               pais.obter_localizacao_by_nome(localizacao2), distancia)
-                conexoes.append(con)
+                conexao = conexoes.add_conexao(pais.obter_localizacao_by_nome(localizacao1),
+                                             pais.obter_localizacao_by_nome(localizacao2), distancia)
     return conexoes
 
 

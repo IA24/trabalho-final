@@ -1,4 +1,3 @@
-from algoritmos.a_estrela import AEstrela
 from algoritmos.procura_sofrega import ProcuraSofrega
 from algoritmos.custo_uniforme import CustoUniforme
 from algoritmos.profundidade_limitada import ProfundidadeLimitada
@@ -46,11 +45,11 @@ class Interface:
 
     @staticmethod
     def a_estrela(origem, destino):
-        search = AEstrela(origem, destino)
+        """search = AEstrela(origem, destino)
         resultado = search.algoritmo()
         search.display(resultado)
         Utils.enter_to_continue()
-        Utils.limpar_consola()
+        Utils.limpar_consola()"""
 
     @staticmethod
     def procura_sofrega(origem, destino):

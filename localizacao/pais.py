@@ -14,6 +14,9 @@ class Pais:
         return self.localizacoes
 
     def obter_localizacao_by_nome(self, nome):
+        if not isinstance(nome, str):
+            return
+
         for localizacao in self.localizacoes:
             if localizacao.nome.lower() == nome.lower():
                 return localizacao
@@ -26,9 +29,10 @@ class Pais:
         else:
             return False
 
-    def calcular_distancia(self, local1, local2):
+    @staticmethod
+    def calcular_distancia_reta(local1, local2):
+        if local1 is None or local2 is None: return 0
         distancia = math.sqrt((local1.longitude - local2.longitude) ** 2 + (local2.latitude - local1.latitude) ** 2)
-
         return int(distancia * 100)
 
     def display(self):

@@ -1,4 +1,4 @@
-from algoritmos.Algoritmos import Algoritmos
+from algoritmos.algoritmos import Algoritmos
 import heapq
 
 from data import PAISES
@@ -36,12 +36,12 @@ class CustoUniforme(Algoritmos):
         print("Origem:", origem.obter_nome())
         print("Destino:", destino.obter_nome())
         print("Custo:", custo, "km")
-        print("Custo em linha reta", PAISES.calcular_distancia(caminho[0], caminho[-1]), "km")
+        print("Custo em linha reta", PAISES.calcular_distancia_reta(caminho[0], caminho[-1]), "km")
         caminho_str = ""
         distancia = ""
         for i, item in enumerate(caminho):
             if i > 0:
-                distancia = PAISES.calcular_distancia(caminho[i - 1], item)
+                distancia = PAISES.calcular_distancia_reta(caminho[i - 1], item)
                 caminho_str += " <" + str(distancia) + "> "
             caminho_str += item.obter_nome()
         print("Caminho percorrido:", caminho_str)

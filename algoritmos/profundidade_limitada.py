@@ -4,7 +4,10 @@ import heapq
 
 
 class ProfundidadeLimitada(Algoritmos):
-    def x(self, origem, destino, nivel_maximo, caminho_atual=[]):
+    def busca(self, origem, destino, nivel_maximo, caminho_atual=None):
+        if caminho_atual is None:
+            caminho_atual = []
+
         caminho_atual = caminho_atual + [origem]
 
         if origem == destino:
@@ -15,13 +18,13 @@ class ProfundidadeLimitada(Algoritmos):
 
         for vizinha in self.conexoes.conexao[origem]:
             if vizinha not in caminho_atual:
-                novo_caminho = self.x(vizinha, destino, nivel_maximo, caminho_atual)
+                novo_caminho = self.busca(vizinha, destino, nivel_maximo, caminho_atual)
                 if novo_caminho is not None:
                     return novo_caminho
 
         return None
 
     def algoritmo(self):
-        novo_caminho = self.x(self.origem, self.destino, self.profundidade)
+        novo_caminho = self.busca(self.origem, self.destino, self.profundidade)
         resultado = Resultado(novo_caminho, self.origem, self.destino, self.profundidade)
         return resultado

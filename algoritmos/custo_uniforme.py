@@ -18,10 +18,11 @@ class CustoUniforme(Algoritmos):
             if no_atual == self.destino:
                 # Construir e retornar o caminho percorrido
                 caminho = []
+                resulado = None
                 while no_atual is not None:
                     caminho.insert(0, no_atual)
                     no_atual = predecessores[no_atual]
-                    resultado = Resultado(caminho, custo_atual, self.origem, self.destino)
+                    resultado = Resultado(caminho, self.origem, self.destino)
                 return resultado
             explorados.add(no_atual)
             for neighbor in self.conexoes.conexao[no_atual]:

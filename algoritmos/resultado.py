@@ -2,7 +2,7 @@ from data import PAISES, CONEXOES
 
 
 class Resultado:
-    def __init__(self, caminho, origem, destino, profundidade=None):
+    def __init__(self, caminho, origem, destino, profundidade=-1):
         self.origem = origem
         self.destino = destino
         self.caminho = caminho

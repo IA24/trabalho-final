@@ -25,18 +25,3 @@ class ProcuraSofrega(Algoritmos):
                     novo_caminho = caminho_atual + [localizacao_atual]
                     heapq.heappush(fila_prioridade, (novo_custo, nova_localizacao, novo_caminho))
         return float('inf'), [], self.origem, self.destino
-
-    def display(self, resultado):
-        custo, caminho, origem, destino = resultado
-        if custo == float('inf'):
-            print("Não foi encontrado um caminho entre", origem, "e", destino)
-            return
-        print("Origem:", origem.obter_nome())
-        print("Destino:", destino.obter_nome())
-        print("Custo:", custo)
-        caminho_str = ""
-        for i, cam in enumerate(caminho):
-            caminho_str += cam.obter_nome()
-            if i < len(caminho) - 1:
-                caminho_str += ", "
-        print("Caminho percorrido:", caminho_str)

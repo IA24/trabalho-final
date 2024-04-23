@@ -6,6 +6,7 @@ class Pais:
         self.nome = nome
         self.localizacoes = localizacoes
         self.conexoes = []
+        self.conexoes_faro = []
 
     def obter_nome(self):
         return self.nome
@@ -29,11 +30,21 @@ class Pais:
         else:
             return False
 
-    @staticmethod
-    def calcular_distancia_reta(local1, local2):
-        if local1 is None or local2 is None: return 0
-        distancia = math.sqrt((local1.longitude - local2.longitude) ** 2 + (local2.latitude - local1.latitude) ** 2)
-        return int(distancia * 100)
+    def calcular_distancia_reta(self, local1, local2):
+        if local1 is None or local2 is None:
+            return -1
+        if local1 == local2:
+            return 0
+        faro = self.obter_localizacao_by_nome("Faro")
+        if local1 == faro:
+            conexao = self.busca_conexoes_faro(local2)
+            return conexao.distancia
+        elif local2 == faro:
+            conexao = self.busca_conexoes_faro(local1)
+            return conexao.distancia
+        else:
+            distancia = math.sqrt((local1.longitude - local2.longitude) ** 2 + (local2.latitude - local1.latitude) ** 2)
+            return int(distancia * 100)
 
     def display(self):
         i = 1
@@ -45,6 +56,9 @@ class Pais:
 
     def set_conexoes(self, conexoes):
         self.conexoes = conexoes
+
+    def set_conexoes_faro(self, conexoes_faro):
+        self.conexoes_faro = conexoes_faro
 
     def set_localizacoes(self, localizacoes):
         self.localizacoes = localizacoes
@@ -65,3 +79,7 @@ class Pais:
 
         return conexoes_por_localizacao
 
+    def busca_conexoes_faro(self, local):
+        for conexao in self.conexoes_faro:
+            if conexao.localizacao == local:
+                return conexao

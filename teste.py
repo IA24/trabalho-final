@@ -12,7 +12,7 @@ def teste():
     teste_profundidadelimitada()
     print("\n---------------------------------------\n")
     print("Procura Sofrega")
-    #teste_procurasofrega()
+    teste_procurasofrega()
     print("\n---------------------------------------\n")
     print("A Estrela")
     teste_aestrela()
@@ -20,8 +20,9 @@ def teste():
 
 def teste_procurasofrega():
     search = ProcuraSofrega("Coimbra", "Faro")
-    resultado = search.algoritmo()
-    resultado.display()
+    resultado, x = search.algoritmo()
+    print(resultado, x)
+    #resultado.display()
 
 
 def teste_profundidadelimitada():

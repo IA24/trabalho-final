@@ -3,8 +3,8 @@ from teste import teste
 
 
 def main():
-    #Interface.interface()
     teste()
+    #Interface.interface()
 
 
 main()

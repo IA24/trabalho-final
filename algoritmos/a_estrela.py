@@ -21,7 +21,6 @@ class AEstrela(Algoritmos):
                     current_node = came_from[current_node]
                     path.append(current_node)
                 path.reverse()
-                #total_cost = sum(self.conexoes.get_distance(path[i], path[i + 1]) for i in range(len(path) - 1))
                 resultado = Resultado(path, self.origem, self.destino)
                 return resultado
 

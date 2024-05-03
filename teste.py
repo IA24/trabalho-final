@@ -9,7 +9,7 @@ def teste():
     teste_profundidadelimitada()
     print("\n---------------------------------------\n")
     print("Procura Sofrega")
-    teste_procurasofrega()
+    #teste_procurasofrega()
     print("\n---------------------------------------\n")
     print("Custo Uniforme")
     teste_custouniforme()

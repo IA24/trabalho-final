@@ -8,6 +8,7 @@ from algoritmos.a_estrela import AEstrela
 from data import PAISES
 from algoritmos.procura_sofrega import ProcuraSofrega
 
+
 class PrintRedirector:
     def __init__(self, text_widget):
         self.text_widget = text_widget
@@ -24,6 +25,7 @@ class PrintRedirector:
             self.text_widget.see(tk.END)
             self.buffer.truncate(0)
             self.buffer.seek(0)
+
 
 class GUIInterface(tk.Tk):
     def __init__(self):
@@ -109,9 +111,11 @@ class GUIInterface(tk.Tk):
     def prompt_input(self, prompt):
         return simpledialog.askstring("Input", prompt, parent=self)
 
+
 def main():
     app = GUIInterface()
     app.mainloop()
+
 
 if __name__ == "__main__":
     main()

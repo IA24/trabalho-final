@@ -10,7 +10,6 @@ class Interface:
     @staticmethod
     def interface():
         while True:
-            print("0. Todos")
             print("1. Custo Uniforme")
             print("2. Profundidade Limitada")
             print("3. Procura Sôfrega")
@@ -19,7 +18,7 @@ class Interface:
             try:
                 if opcao == "exit":
                     break
-                elif int(opcao) in [0, 1, 2, 3, 4]:
+                elif int(opcao) in [1, 2, 3, 4]:
                     Utils.limpar_consola()
                     origem, destino, profundidade = Interface.inputs(opcao)
                     if int(opcao) == 1:

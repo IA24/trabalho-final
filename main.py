@@ -5,9 +5,9 @@ from interface_grafica import GUIInterface
 
 def main():
     teste()
-    Interface.interface()
     app = GUIInterface()
     app.mainloop()
+    Interface.interface()
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ from algoritmos.custo_uniforme import CustoUniforme
 from algoritmos.profundidade_limitada import ProfundidadeLimitada
 from algoritmos.a_estrela import AEstrela
 from data import PAISES
+from algoritmos.procura_sofrega import ProcuraSofrega
 
 class PrintRedirector:
     def __init__(self, text_widget):
@@ -74,8 +75,8 @@ class GUIInterface(tk.Tk):
         return search.algoritmo()
 
     def procura_sofrega(self, origem, destino):
-        # Implemente a lógica para Procura Sôfrega aqui
-        pass
+        search = ProcuraSofrega(origem, destino)
+        return search.algoritmo()
 
     def profundidade_limitada(self, origem, destino, profundidade):
         search = ProfundidadeLimitada(origem, destino, profundidade)

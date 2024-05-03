@@ -4,7 +4,7 @@ from teste import teste
 
 def main():
     teste()
-    #Interface.interface()
+    Interface.interface()
 
 
 main()

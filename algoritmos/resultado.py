@@ -2,7 +2,7 @@ from data import PAISES, CONEXOES
 
 
 class Resultado:
-    def __init__(self, caminho, origem, destino, profundidade=-1):
+    def __init__(self, caminho, origem, destino, profundidade=float("inf")):
         self.origem = origem
         self.destino = destino
         self.caminho = caminho
@@ -16,7 +16,7 @@ class Resultado:
     def display(self):
         print("Origem:", self.origem.obter_nome())
         print("Destino:", self.destino.obter_nome())
-        if self.profundidade != -1:
+        if self.profundidade != float("inf"):
             print("Profundidade:", self.profundidade)
         print("Distância:", self.distancia, "km")
         print("Distância (linha reta):", self.distancia_reta, "km")

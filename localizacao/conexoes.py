@@ -11,7 +11,10 @@ class Conexoes:
         self.conexao[localizacao2][localizacao1] = distancia
 
     def get_distance(self, localizacao1, localizacao2):
-        return self.conexao[localizacao1][localizacao2]
+        if localizacao1 in self.conexao and localizacao2 in self.conexao[localizacao1]:
+            return self.conexao[localizacao1][localizacao2]
+        else:
+            return float('inf')
 
     def get_neighbors(self, localizacao):
         return self.conexao[localizacao]

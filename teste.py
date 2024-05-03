@@ -9,7 +9,7 @@ def teste():
     teste_profundidadelimitada()
     print("\n---------------------------------------\n")
     print("Procura Sofrega")
-    #teste_procurasofrega()
+    teste_procurasofrega()
     print("\n---------------------------------------\n")
     print("Custo Uniforme")
     teste_custouniforme()
@@ -29,13 +29,6 @@ def teste_procurasofrega():
     search = ProcuraSofrega("Coimbra", "Faro")
     resultado = search.algoritmo()
     resultado.display()
-    """if caminho:
-        print("Caminho encontrado:", caminho)
-        distancia_total = calcular_distancia_total(caminho, CONEXOES)
-        print("Distância total percorrida:", distancia_total)
-    else:
-        print("Não foi possível encontrar um caminho.")"""
-
 
 def teste_profundidadelimitada():
     search = ProfundidadeLimitada("Coimbra", "Faro", 5)

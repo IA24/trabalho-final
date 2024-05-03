@@ -52,7 +52,9 @@ class Interface:
 
     @staticmethod
     def procura_sofrega(origem, destino):
-        pass
+        search = ProcuraSofrega(origem, destino)
+        resultado = search.algoritmo()
+        resultado.display()
 
     @staticmethod
     def profundidade_limitada(origem, destino, profundidade):

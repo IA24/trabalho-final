@@ -7,7 +7,8 @@ def main():
     teste()
     app = MainWindow()
     app.mainloop()
-    #Interface.interface()
+
+    return 0
 
 
 if __name__ == "__main__":

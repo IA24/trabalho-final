@@ -10,7 +10,8 @@ from folium import plugins
 class Mapa:
     def __init__(self, caminho):
         self.caminho = caminho
-        self.mapa = folium.Map(location=[self.caminho[0].obter_latitude(), self.caminho[0].obter_longitude()], zoom_start=10)
+        self.mapa = folium.Map(location=[self.caminho[0].obter_latitude(), self.caminho[0].obter_longitude()],
+                               zoom_start=10)
 
     def abrir_mapa(self):
         self.__create_makers()
@@ -42,10 +43,26 @@ class Mapa:
             ).add_to(self.mapa)
 
     def __create_makers(self):
+        first_l = self.caminho[0]
+        last_l = self.caminho[-1]
+        cor_origem = 'red'
+        cor_chegada = 'green'
         for localizacao in LOCALIZACOES:
             if localizacao in self.caminho:
-                folium.Marker((localizacao.obter_latitude(), localizacao.obter_longitude()),
-                              popup=self.__marker_popup(localizacao)).add_to(self.mapa)
+                icon = None
+                popup = self.__marker_popup(localizacao)
+                if localizacao == first_l:
+                    icon = folium.Icon(color=cor_origem, icon='star')
+                    popup = "Origem | " + popup
+                elif localizacao == last_l:
+                    icon = folium.Icon(color=cor_chegada, icon='info-sign')
+                    popup = "Destino | " + popup
+
+                folium.Marker(
+                    location=(localizacao.obter_latitude(), localizacao.obter_longitude()),
+                    popup=popup,
+                    icon=icon
+                ).add_to(self.mapa)
 
     @staticmethod
     def __marker_popup(localizacao):
@@ -53,4 +70,3 @@ class Mapa:
         marker_popup_text += localizacao.obter_nome() + "\n"
         marker_popup_text += str(localizacao.obter_latitude()) + " " + str(localizacao.obter_longitude())
         return marker_popup_text
-

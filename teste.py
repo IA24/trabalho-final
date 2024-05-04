@@ -16,6 +16,8 @@ def teste():
     print("\n---------------------------------------\n")
     print("A Estrela")
     teste_aestrela()
+    print("\n---------------------------------------\n")
+
 
 def calcular_distancia_total(caminho, distancias):
     distancia_total = 0
@@ -25,10 +27,12 @@ def calcular_distancia_total(caminho, distancias):
         distancia_total += distancias[cidade_atual][proxima_cidade]
     return distancia_total
 
+
 def teste_procurasofrega():
     search = ProcuraSofrega("Coimbra", "Faro")
     resultado = search.algoritmo()
     resultado.display()
+
 
 def teste_profundidadelimitada():
     search = ProfundidadeLimitada("Coimbra", "Faro", 5)

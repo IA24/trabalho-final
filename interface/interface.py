@@ -21,14 +21,16 @@ class Interface:
                 elif int(opcao) in [1, 2, 3, 4]:
                     Utils.limpar_consola()
                     origem, destino, profundidade = Interface.inputs(opcao)
+                    resultado = None
                     if int(opcao) == 1:
-                        Interface.custo_uniforme(origem, destino)
+                        resultado = Interface.custo_uniforme(origem, destino)
                     elif int(opcao) == 2:
-                        Interface.profundidade_limitada(origem, destino, profundidade)
+                        resultado = Interface.profundidade_limitada(origem, destino, profundidade)
                     elif int(opcao) == 3:
-                        Interface.procura_sofrega(origem, destino)
+                        resultado = Interface.procura_sofrega(origem, destino)
                     elif int(opcao) == 4:
-                        Interface.a_estrela(origem, destino)
+                        resultado = Interface.a_estrela(origem, destino)
+                    resultado.display()
                     Utils.enter_to_continue()
                     Utils.limpar_consola()
             except ValueError as ve:
@@ -40,26 +42,22 @@ class Interface:
     @staticmethod
     def custo_uniforme(origem, destino):
         search = CustoUniforme(origem, destino)
-        resultado = search.algoritmo()
-        resultado.display()
+        return search.algoritmo()
 
     @staticmethod
     def a_estrela(origem, destino):
         search = AEstrela(origem, destino)
-        resultado = search.algoritmo()
-        resultado.display()
+        return search.algoritmo()
 
     @staticmethod
     def procura_sofrega(origem, destino):
         search = ProcuraSofrega(origem, destino)
-        resultado = search.algoritmo()
-        resultado.display()
+        return search.algoritmo()
 
     @staticmethod
     def profundidade_limitada(origem, destino, profundidade):
         search = ProfundidadeLimitada(origem, destino, profundidade)
-        resultado = search.algoritmo()
-        resultado.display()
+        return search.algoritmo()
 
     @staticmethod
     def inputs(opcao):

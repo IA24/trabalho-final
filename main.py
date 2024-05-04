@@ -1,11 +1,11 @@
-from interface import Interface
+from interface.interface import Interface
 from teste import teste
-from interface_grafica import GUIInterface
+from interface.gui.main_window import MainWindow
 
 
 def main():
     teste()
-    app = GUIInterface()
+    app = MainWindow()
     app.mainloop()
     Interface.interface()
 

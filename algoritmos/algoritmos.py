@@ -1,10 +1,11 @@
 from data import PAISES, CONEXOES
 from abc import ABC, abstractmethod
+from localizacao.localizacao import Localizacao
 import heapq
 
 
 class Algoritmos(ABC):
-    def __init__(self, origem, destino, profundidade=0):
+    def __init__(self, origem: Localizacao, destino: Localizacao, profundidade=0):
         if CONEXOES is None or origem is None or destino is None:
             raise ValueError("Conexões, origem e destino devem ser fornecidos.")
         self.conexoes = CONEXOES

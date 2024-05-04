@@ -67,9 +67,9 @@ class Resultado:
         return "Distância (linha reta): " + str(self.distancia_reta) + "km"
 
     def __str_caminho(self):
-        return "Caminho percorrido: " + self.obter_caminho()
+        return "Caminho percorrido: " + self.obter_caminho_with_distance()
 
-    def obter_caminho(self):
+    def obter_caminho_with_distance(self):
         caminho_str = ""
         for i, item in enumerate(self.caminho):
             if i > 0:
@@ -77,6 +77,9 @@ class Resultado:
                 caminho_str += " <" + str(distancia) + "> "
             caminho_str += item.obter_nome()
         return caminho_str
+
+    def obter_caminho(self):
+        return self.caminho
 
     def obter_origem(self):
         return self.origem

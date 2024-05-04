@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_27bf6c0da4069f7c6f3bcab44b415868 {
+                #map_af0fae87e3791be3dee87e17de32b84b {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,22 +35,23 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-textpath@1.2.3/leaflet.textpath.min.js"></script>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_27bf6c0da4069f7c6f3bcab44b415868" ></div>
+            <div class="folium-map" id="map_af0fae87e3791be3dee87e17de32b84b" ></div>
         
 </body>
 <script>
     
     
-            var map_27bf6c0da4069f7c6f3bcab44b415868 = L.map(
-                "map_27bf6c0da4069f7c6f3bcab44b415868",
+            var map_af0fae87e3791be3dee87e17de32b84b = L.map(
+                "map_af0fae87e3791be3dee87e17de32b84b",
                 {
-                    center: [22.29536938675284, 109.56941282317257],
+                    center: [39.670553299554, -8.008552309046332],
                     crs: L.CRS.EPSG3857,
-                    zoom: 15,
+                    zoom: 7,
                     zoomControl: true,
                     preferCanvas: false,
                 }
@@ -60,41 +61,66 @@
 
         
     
-            var tile_layer_6209ab01717e944da9a404e2a45d7a2b = L.tileLayer(
+            var tile_layer_553a830825c5acf58f0eb96e613f38ff = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
         
     
-            tile_layer_6209ab01717e944da9a404e2a45d7a2b.addTo(map_27bf6c0da4069f7c6f3bcab44b415868);
+            tile_layer_553a830825c5acf58f0eb96e613f38ff.addTo(map_af0fae87e3791be3dee87e17de32b84b);
         
     
-            var marker_38975c1bb231696b86c62a9918ae4ed3 = L.marker(
-                [22.29536938675284, 109.56941282317257],
+            var marker_26030cc75e438becb5f31d17b8a008ac = L.marker(
+                [40.65518424265567, -7.913034512029738],
                 {}
-            ).addTo(map_27bf6c0da4069f7c6f3bcab44b415868);
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
         
     
-        var popup_2db6904a52f0aa674e120b662ae9a797 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_12e12ebaee70151c26aff2548a466c1e = $(`<div id="html_12e12ebaee70151c26aff2548a466c1e" style="width: 100.0%; height: 100.0%;">Local</div>`)[0];
-                popup_2db6904a52f0aa674e120b662ae9a797.setContent(html_12e12ebaee70151c26aff2548a466c1e);
-            
-        
-
-        marker_38975c1bb231696b86c62a9918ae4ed3.bindPopup(popup_2db6904a52f0aa674e120b662ae9a797)
-        ;
-
+            var marker_2fcf0e646eb00230f797039e9d5c0b3d = L.marker(
+                [40.20295117346438, -8.411485350849919],
+                {}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
         
     
+            var marker_5098a8b5491a1dad8bcae3c646fcbb92 = L.marker(
+                [38.571009088176744, -7.9142525391775385],
+                {}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
+        
     
-            marker_38975c1bb231696b86c62a9918ae4ed3.bindTooltip(
-                `<div>
-                     Clique para mais informações
-                 </div>`,
-                {"sticky": true}
+            var marker_1c148146192ac1a51a3b43fadf7618bd = L.marker(
+                [39.2356911662872, -8.687002065758271],
+                {}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
+        
+    
+            var marker_2820adf2b8032225bd055ef4469092f7 = L.marker(
+                [39.74813842092515, -8.808722919076098],
+                {}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
+        
+    
+            var marker_9feff95fd514e7998841e4e2f3c6c1e4 = L.marker(
+                [37.01714339877875, -7.9303356741666455],
+                {}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
+        
+    
+            var marker_d0057396fc2958e6cc25e6471e6ef851 = L.marker(
+                [38.01701878223444, -7.860143593090843],
+                {}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
+        
+    
+            var poly_line_02280726b5ffaff596fb639aee62318f = L.polyline(
+                [[40.65518424265567, -7.913034512029738], [40.20295117346438, -8.411485350849919], [39.74813842092515, -8.808722919076098], [39.2356911662872, -8.687002065758271], [38.571009088176744, -7.9142525391775385], [38.01701878223444, -7.860143593090843], [37.01714339877875, -7.9303356741666455]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_af0fae87e3791be3dee87e17de32b84b);
+        
+    
+            poly_line_02280726b5ffaff596fb639aee62318f.setText(
+                "Seu r\u00f3tulo aqui",
+                {"below": false, "center": false, "offset": 0.004, "orientation": 0, "repeat": false, "textFont": 30}
             );
         
 </script>

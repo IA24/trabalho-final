@@ -1,40 +1,30 @@
-import tkinter as tk
-from tkinter import ttk
-import folium
 import webbrowser
-import os
+
+import folium
+
+from constants import TEMP_MAP_PATH
+from data import LOCALIZACOES
 
 
-class MapaWindow(tk.Toplevel):
-    def __init__(self, parent, latitude, longitude, window_title="Mapa"):
-        super().__init__(parent)
-        self.title(window_title)
-        self.latitude = latitude
-        self.longitude = longitude
-        self.create_map()
+class Mapa:
+    def __init__(self, caminho):
+        self.mapa = folium.Map(location=[39.670553299554, -8.008552309046332], zoom_start=7)
+        self.caminho = caminho
 
-    def create_map(self):
-        map_frame = ttk.Frame(self)
-        map_frame.pack(fill='both', expand=True)
+    def abrir_mapa(self):
+        for localizacao in LOCALIZACOES:
+            if localizacao in self.caminho:
+                folium.Marker((localizacao.obter_latitude(), localizacao.obter_longitude())).add_to(self.mapa)
 
-        mapa = folium.Map(location=[self.latitude, self.longitude], zoom_start=15)
-        folium.Marker([self.latitude, self.longitude], popup="Local", tooltip="Clique para mais informações").add_to(mapa)
+        coordenadas = []
+        for c in self.caminho:
+            coordenadas.append((c.latitude, c.longitude))
+        polyline = folium.PolyLine(coordenadas, color="blue").add_to(self.mapa)
 
-        # Salva o mapa em um arquivo HTML temporário
-        mapa.save("mapa_temp.html")
+        """texto_rotulo = "Seu rótulo aqui"
+        offset = 0.004
+        tamanho_fonte = 30
+        folium.plugins.PolyLineTextPath(polyline, texto_rotulo, offset=offset, text_font=tamanho_fonte).add_to(self.mapa)"""
 
-        # Carrega o mapa HTML em um navegador web embutido
-        map_browser = ttk.Frame(map_frame)
-        map_browser.pack(fill='both', expand=True)
-
-        self.browser = webbrowser.MiniBrowser(master=map_browser)
-        self.browser.pack(fill='both', expand=True)
-        self.browser.open(url="file://" + os.path.abspath("mapa_temp.html"))
-
-        # Exclui o arquivo HTML temporário ao fechar a janela
-        self.protocol("WM_DELETE_WINDOW", self.on_close)
-
-    def on_close(self):
-        # Fecha a janela e exclui o arquivo HTML temporário
-        self.destroy()
-        os.remove("mapa_temp.html")
+        self.mapa.save(TEMP_MAP_PATH)
+        webbrowser.open(TEMP_MAP_PATH)

@@ -31,14 +31,14 @@ class Mapa:
             texto_distancia_reta = str(distancia_reta) + " km/reto"
             texto_distancia = str(distancia) + " km"
             offset = 1
-            style = ("font-family: Arial; font-weight: bold; font-size: 18px; fill: white; "
+            style = ("font-family: Arial; font-weight: bold; font-size: 18px; fill: black; "
                      "text-shadow: 0px 0px 7px rgba(0,0,0);")
             attributes = {'style': style}
             folium.plugins.PolyLineTextPath(
                 polyline,
                 texto_distancia_reta + " | " + texto_distancia,
                 offset=offset,
-                attributes=attributes,  # Aqui você passa os atributos para definir o estilo do texto
+                attributes=attributes,
             ).add_to(self.mapa)
 
     def __create_makers(self):

@@ -30,7 +30,7 @@ class ResultWindow(tk.Toplevel):
         self.create_input_with_label("Distância (linha reta)", self.result.obter_distancia_reta(), row)
         row = row + 1
 
-        self.create_input_with_label("Caminho", self.result.obter_caminho_with_distance(), row)
+        #self.create_input_with_label("Caminho", self.result.obter_caminho_with_distance(), row)
         button_row = row + 1
 
         button = tk.Button(self, text="Ver caminho", command=self.abrir_mapa)  # Cria o botão
@@ -39,11 +39,11 @@ class ResultWindow(tk.Toplevel):
     def create_input_with_label(self, label_text, content, row=0):
         label = tk.Label(self, text=label_text)
         label.grid(row=row, column=0, padx=5, pady=5)
-        input_field = tk.Entry(self, state="disabled")
+        input_field = tk.Entry(self, state="readonly")
         input_field.grid(row=row, column=1, padx=5, pady=5)
         input_field.configure(state="normal")
         input_field.insert(tk.END, content) if content is not None else None
-        input_field.configure(state="disabled")
+        input_field.configure(state="readonly")
 
     def abrir_mapa(self):
         self.mapa.abrir_mapa()

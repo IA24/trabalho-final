@@ -3,28 +3,54 @@ import webbrowser
 import folium
 
 from constants import TEMP_MAP_PATH
-from data import LOCALIZACOES
+from data import LOCALIZACOES, PAISES, CONEXOES
+from folium import plugins
 
 
 class Mapa:
     def __init__(self, caminho):
-        self.mapa = folium.Map(location=[39.670553299554, -8.008552309046332], zoom_start=7)
         self.caminho = caminho
+        self.mapa = folium.Map(location=[self.caminho[0].obter_latitude(), self.caminho[0].obter_longitude()], zoom_start=10)
 
     def abrir_mapa(self):
-        for localizacao in LOCALIZACOES:
-            if localizacao in self.caminho:
-                folium.Marker((localizacao.obter_latitude(), localizacao.obter_longitude())).add_to(self.mapa)
-
-        coordenadas = []
-        for c in self.caminho:
-            coordenadas.append((c.latitude, c.longitude))
-        polyline = folium.PolyLine(coordenadas, color="blue").add_to(self.mapa)
-
-        """texto_rotulo = "Seu rótulo aqui"
-        offset = 0.004
-        tamanho_fonte = 30
-        folium.plugins.PolyLineTextPath(polyline, texto_rotulo, offset=offset, text_font=tamanho_fonte).add_to(self.mapa)"""
+        self.__create_makers()
+        self.__create_polylines()
 
         self.mapa.save(TEMP_MAP_PATH)
         webbrowser.open(TEMP_MAP_PATH)
+
+    def __create_polylines(self):
+        for i in range(len(self.caminho) - 1):
+            origem = self.caminho[i]
+            destino = self.caminho[i + 1]
+            coordenadas = [(origem.latitude, origem.longitude),
+                           (destino.latitude, destino.longitude)]
+            polyline = folium.PolyLine(coordenadas, color="blue").add_to(self.mapa)
+            distancia_reta = PAISES.calcular_distancia_reta(origem, destino)
+            distancia = CONEXOES.get_distance(origem, destino)
+            texto_distancia_reta = str(distancia_reta) + " km/reto"
+            texto_distancia = str(distancia) + " km"
+            offset = 1
+            style = ("font-family: Arial; font-weight: bold; font-size: 18px; fill: white; "
+                     "text-shadow: 0px 0px 7px rgba(0,0,0);")
+            attributes = {'style': style}
+            folium.plugins.PolyLineTextPath(
+                polyline,
+                texto_distancia_reta + " | " + texto_distancia,
+                offset=offset,
+                attributes=attributes,  # Aqui você passa os atributos para definir o estilo do texto
+            ).add_to(self.mapa)
+
+    def __create_makers(self):
+        for localizacao in LOCALIZACOES:
+            if localizacao in self.caminho:
+                folium.Marker((localizacao.obter_latitude(), localizacao.obter_longitude()),
+                              popup=self.__marker_popup(localizacao)).add_to(self.mapa)
+
+    @staticmethod
+    def __marker_popup(localizacao):
+        marker_popup_text = ""
+        marker_popup_text += localizacao.obter_nome() + "\n"
+        marker_popup_text += str(localizacao.obter_latitude()) + " " + str(localizacao.obter_longitude())
+        return marker_popup_text
+

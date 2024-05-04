@@ -37,10 +37,10 @@ class Pais:
             return 0
         faro = self.obter_localizacao_by_nome("Faro")
         if local1 == faro:
-            conexao = self.busca_conexoes_faro(local2)
+            conexao = self.__busca_conexoes_faro(local2)
             return conexao.distancia
         elif local2 == faro:
-            conexao = self.busca_conexoes_faro(local1)
+            conexao = self.__busca_conexoes_faro(local1)
             return conexao.distancia
         else:
             distancia = math.sqrt((local1.longitude - local2.longitude) ** 2 + (local2.latitude - local1.latitude) ** 2)
@@ -79,7 +79,7 @@ class Pais:
 
         return conexoes_por_localizacao
 
-    def busca_conexoes_faro(self, local):
+    def __busca_conexoes_faro(self, local):
         for conexao in self.conexoes_faro:
             if conexao.localizacao == local:
                 return conexao

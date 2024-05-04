@@ -26,7 +26,11 @@ class MainWindow(tk.Tk):
                       command=lambda id=algo_id: self.run_algorithm(id)).pack()
 
     def run_algorithm(self, algorithm_id):
-        origem, destino, profundidade = self.get_inputs(algorithm_id)
+        #origem, destino, profundidade = self.get_inputs(algorithm_id)
+
+        origem = "Coimbra"
+        destino = "Faro"
+        profundidade = 5
 
         if origem is None or destino is None:
             return

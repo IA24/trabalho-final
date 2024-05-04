@@ -18,6 +18,7 @@ class CustoUniforme(Algoritmos):
             if no_atual == self.destino:
                 # Construir e retornar o caminho percorrido
                 caminho = []
+                resultado = None
                 while no_atual is not None:
                     caminho.insert(0, no_atual)
                     no_atual = predecessores[no_atual]
